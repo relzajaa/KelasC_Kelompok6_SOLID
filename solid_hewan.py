@@ -109,11 +109,36 @@ class Kandang:
     def __init__(self):
         self.hewan_list = []
 
+    # Menambahkan hewan ke kandang
     def tambah_hewan(self, hewan):
         self.hewan_list.append(hewan)
+        print(f"{hewan.nama} berhasil dimasukkan ke kandang.")
 
+    # Menampilkan seluruh hewan
+    def tampilkan_hewan(self):
+        print("\nDaftar Hewan di Kandang:")
+
+        if not self.hewan_list:
+            print("Kandang masih kosong.")
+            return
+
+        for index, hewan in enumerate(self.hewan_list, start=1):
+            print(f"{index}. {hewan.nama} - {hewan.jenis}")
+
+    # Membersihkan kandang
     def bersihkan_kandang(self):
-        print("Kandang dibersihkan.")
+        print("\nKandang sedang dibersihkan...")
+        print("Kandang berhasil dibersihkan.")
+
+    # Menghapus hewan dari kandang
+    def hapus_hewan(self, nama_hewan):
+        for hewan in self.hewan_list:
+            if hewan.nama == nama_hewan:
+                self.hewan_list.remove(hewan)
+                print(f"{nama_hewan} berhasil dikeluarkan dari kandang.")
+                return
+
+        print(f"Hewan dengan nama {nama_hewan} tidak ditemukan.")
 
 class KebunBinatang:
     def __init__(self):
