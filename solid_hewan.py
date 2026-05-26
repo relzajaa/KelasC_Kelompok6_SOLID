@@ -114,22 +114,6 @@ class Kandang:
         self.hewan_list.append(hewan)
         print(f"{hewan.nama} berhasil dimasukkan ke kandang.")
 
-    # Menampilkan seluruh hewan
-    def tampilkan_hewan(self):
-        print("\nDaftar Hewan di Kandang:")
-
-        if not self.hewan_list:
-            print("Kandang masih kosong.")
-            return
-
-        for index, hewan in enumerate(self.hewan_list, start=1):
-            print(f"{index}. {hewan.nama} - {hewan.jenis}")
-
-    # Membersihkan kandang
-    def bersihkan_kandang(self):
-        print("\nKandang sedang dibersihkan...")
-        print("Kandang berhasil dibersihkan.")
-
     # Menghapus hewan dari kandang
     def hapus_hewan(self, nama_hewan):
         for hewan in self.hewan_list:
@@ -137,14 +121,51 @@ class Kandang:
                 self.hewan_list.remove(hewan)
                 print(f"{nama_hewan} berhasil dikeluarkan dari kandang.")
                 return
-
         print(f"Hewan dengan nama {nama_hewan} tidak ditemukan.")
 
+
+# SRP (Single Responsibility Principle)
+# Memisahkan tanggung jawab menampilkan informasi hewan dari class Kandang
+class PenampilKandang:
+    @staticmethod
+    def tampilkan_hewan(kandang):
+        print("\nDaftar Hewan di Kandang:")
+
+        if not kandang.hewan_list:
+            print("Kandang masih kosong.")
+            return
+
+        for index, hewan in enumerate(kandang.hewan_list, start=1):
+            print(f"{index}. {hewan.nama} - {hewan.jenis}")
+
+
+# SRP (Single Responsibility Principle)
+# Memisahkan tanggung jawab membersihkan kandang dari class Kandang
+class PembersihKandang:
+    @staticmethod
+    def bersihkan_kandang():
+        print("\nKandang sedang dibersihkan...")
+        print("Kandang berhasil dibersihkan.")
+
+
 class KebunBinatang:
-    def __init__(self):
-        self.kandang = Kandang()
+    # DIP (Dependency Inversion Principle)
+    # KebunBinatang menerima objek Kandang (injeksi dependensi) 
+    # bukannya membuat instance Kandang secara langsung di dalam constructor.
+    def __init__(self, kandang: Kandang):
+        self.kandang = kandang
 
     def rawat_semua_hewan(self):
         for hewan in self.kandang.hewan_list:
             hewan.makan()
-            hewan.terbang()
+            
+            # LSP (Liskov Substitution Principle)
+            # Mengecek kemampuan hewan sebelum memanggil fungsinya.
+            # Hal ini mencegah error saat memanggil hewan.terbang() pada hewan yang tidak bisa terbang.
+            if isinstance(hewan, HewanTerbang):
+                hewan.terbang()
+            if isinstance(hewan, HewanBerjalan):
+                hewan.berjalan()
+            if isinstance(hewan, HewanBerenang):
+                hewan.berenang()
+
