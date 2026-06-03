@@ -50,9 +50,6 @@ class Ikan(Hewan, HewanBerenang):
     def __init__(self, nama):
         super().__init__(nama, "Ikan")
 
-    def suara(self):
-        print(f"{self.nama} bersuara Blup Blup.")
-
     def berenang(self):
         print(f"{self.nama} sedang berenang cepat.")
 
