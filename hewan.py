@@ -77,3 +77,4 @@ class Bebek(Hewan, HewanBerjalan, HewanBerenang, HewanTerbang):
 
     def terbang(self):
         print(f"{self.nama} sedang terbang rendah.")
+        
