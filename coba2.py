@@ -1,0 +1,1 @@
+print("sedang berjalan santai.")
