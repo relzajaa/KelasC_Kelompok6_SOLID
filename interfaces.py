@@ -18,7 +18,6 @@ class Hewan(ABC):
         pass
 
 
-# ISP (Interface Segregation Principle)
 # Interface khusus hewan berjalan
 class HewanBerjalan(ABC):
     @abstractmethod

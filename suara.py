@@ -1,14 +1,6 @@
 from abc import ABC, abstractmethod
 
 
-# SRP (Single Responsibility Principle)
-# Memisahkan tanggung jawab suara hewan ke file tersendiri.
-#
-# OCP (Open/Closed Principle)
-# Untuk menambah suara hewan baru, cukup buat class baru
-# tanpa mengubah class yang sudah ada.
-
-
 class SuaraHewan(ABC):
     """Interface untuk strategi suara hewan."""
 

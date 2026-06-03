@@ -1,5 +1,5 @@
-# SRP (Single Responsibility Principle)
-# Setiap class hanya memiliki satu tanggung jawab
+from hewan import Kucing, Ikan, Burung, Penguin, Bebek
+from interfaces import Hewan
 
 
 class Kandang:

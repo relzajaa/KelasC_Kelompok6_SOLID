@@ -2,11 +2,6 @@ from interfaces import Hewan, HewanBerjalan, HewanTerbang, HewanBerenang
 from suara import SuaraKucing, SuaraIkan, SuaraBurung, SuaraPenguin, SuaraBebek
 
 
-# DIP (Dependency Inversion Principle)
-# Setiap hewan bergantung pada abstraksi SuaraHewan (melalui Strategy Pattern),
-# bukan implementasi suara secara langsung di dalam class hewan.
-
-
 # Kucing hanya berjalan
 class Kucing(Hewan, HewanBerjalan):
     def __init__(self, nama):
