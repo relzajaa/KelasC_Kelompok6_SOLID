@@ -101,9 +101,6 @@ class Bebek(Hewan, HewanBerjalan, HewanBerenang, HewanTerbang):
     def terbang(self):
         print(f"{self.nama} sedang terbang rendah.")
 
-# =========================================================
-# Baru sampai sini tadi
-# =========================================================
 
 class Kandang:
     def __init__(self):
