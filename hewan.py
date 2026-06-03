@@ -1,13 +1,20 @@
 from interfaces import Hewan, HewanBerjalan, HewanTerbang, HewanBerenang
+from suara import SuaraKucing, SuaraIkan, SuaraBurung, SuaraPenguin, SuaraBebek
+
+
+# DIP (Dependency Inversion Principle)
+# Setiap hewan bergantung pada abstraksi SuaraHewan (melalui Strategy Pattern),
+# bukan implementasi suara secara langsung di dalam class hewan.
 
 
 # Kucing hanya berjalan
 class Kucing(Hewan, HewanBerjalan):
     def __init__(self, nama):
         super().__init__(nama, "Mamalia")
+        self._suara = SuaraKucing()
 
     def suara(self):
-        print(f"{self.nama} bersuara Miaw Miaw.")
+        self._suara.bersuara(self.nama)
 
     def berjalan(self):
         print(f"{self.nama} sedang berjalan santai.")
@@ -17,9 +24,10 @@ class Kucing(Hewan, HewanBerjalan):
 class Ikan(Hewan, HewanBerenang):
     def __init__(self, nama):
         super().__init__(nama, "Ikan")
+        self._suara = SuaraIkan()
 
     def suara(self):
-        print(f"{self.nama} bersuara blub blub.")
+        self._suara.bersuara(self.nama)
 
     def berenang(self):
         print(f"{self.nama} sedang berenang cepat.")
@@ -29,9 +37,10 @@ class Ikan(Hewan, HewanBerenang):
 class Burung(Hewan, HewanTerbang, HewanBerjalan):
     def __init__(self, nama):
         super().__init__(nama, "Burung")
+        self._suara = SuaraBurung()
 
     def suara(self):
-        print(f"{self.nama} bersuara cit cit cuit.")
+        self._suara.bersuara(self.nama)
 
     def terbang(self):
         print(f"{self.nama} sedang terbang tinggi.")
@@ -44,9 +53,10 @@ class Burung(Hewan, HewanTerbang, HewanBerjalan):
 class Penguin(Hewan, HewanBerjalan, HewanBerenang):
     def __init__(self, nama):
         super().__init__(nama, "Burung")
+        self._suara = SuaraPenguin()
 
     def suara(self):
-        print(f"{self.nama} bersuara hringgg.")
+        self._suara.bersuara(self.nama)
 
     def berjalan(self):
         print(f"{self.nama} sedang berjalan lucu.")
@@ -59,9 +69,10 @@ class Penguin(Hewan, HewanBerjalan, HewanBerenang):
 class Bebek(Hewan, HewanBerjalan, HewanBerenang, HewanTerbang):
     def __init__(self, nama):
         super().__init__(nama, "Unggas")
+        self._suara = SuaraBebek()
 
     def suara(self):
-        print(f"{self.nama} bersuara kwek kwek.")
+        self._suara.bersuara(self.nama)
 
     def berjalan(self):
         print(f"{self.nama} sedang berjalan lambat.")
