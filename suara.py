@@ -7,7 +7,7 @@ class SuaraHewan(ABC):
     @abstractmethod
     def bersuara(self, nama):
         pass
-
+    
 
 class SuaraKucing(SuaraHewan):
     def bersuara(self, nama):
