@@ -41,3 +41,4 @@ class PembersihKandang:
     def bersihkan_kandang():
         print("\nKandang sedang dibersihkan...")
         print("Kandang berhasil dibersihkan.")
+
